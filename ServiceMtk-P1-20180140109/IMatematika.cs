@@ -12,21 +12,35 @@ namespace ServiceMtk_P1_20180140109
     public interface IMatematika
     {
         [OperationContract]
+        [FaultContract(typeof(MathFault))]//Membuat kelas yang melambangkan exception
         /* output->*/
         int Tambah(int a, int b); //method
+
         [OperationContract]
+        [FaultContract(typeof(MathFault))]//Membuat kelas yang melambangkan exception
         int Kurang(int a, int b); //input
+
         [OperationContract]
+        [FaultContract(typeof(MathFault))]//Membuat kelas yang melambangkan exception
         int Kali(int a, int b);
+
         [OperationContract]
+        [FaultContract(typeof(MathFault))]//Membuat kelas yang melambangkan exception
         int Bagi(int a, int b);
+
         [OperationContract]
+        [FaultContract(typeof(MathFault))]//Membuat kelas yang melambangkan exception
         Koordinat TKoordinat(Koordinat a, Koordinat b); //object dari class 
-
-
     }
 
     [DataContract]
+    class MathFault
+    {
+        [DataMember]
+        public string Kode { get; set; }
+        [DataMember]
+        public string Pesan { get; set; }
+    }
     public class Koordinat
     {
         private int _x, _y; //atribut
@@ -43,7 +57,4 @@ namespace ServiceMtk_P1_20180140109
             set { _y = value; }
         }
     }
-
-
-
 }
